@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""pascal_triangle module.
+
+Contains a function that appends a text file.
+"""
+
 if __name__ == "__main__":
 
     def pascal_triangle(n):
