@@ -4,54 +4,25 @@
 
 
 
-# :colombia: Python - Input/Output                                              
-- How to open a file
-- How to write text in a file
-- How to read the full content of a file
-- How to read a file line by line
-- How to move the cursor in a file
-- How to make sure a file is closed after using it
-- What is and how to use the with statement
-- What is JSON
-- What is serialization
-- What is deserialization
-- How to convert a Python data structure to a JSON string
-- How to convert a JSON string to a Python data structure
-## Examples                                                                     
-Create a function that returns a list of lists of integers representing the Pascal’s triangle of n:
-                                                                                
-```
-print_triangle(pascal_triangle(5))
-```
-the output:
-```
-[1]
-[1,1]
-[1,2,1]
-[1,3,3,1]
-[1,4,6,4,1]
-```
-see the file 14-pascal_triangle.py
-## Prerequisites
-8 lecture hours about Input/Output and JSON                                     
-## Installing
+# Python - Input/Output                                              
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
-for have the code in your local machine you only need download the code files and put it into a directory.
-## Built With
 
-All the code was write under ubuntu 14.04 using the compiler version            
-python 3.4 and pep8                                                             
+Why Python programming is awesome
+How to open a file
+How to write text in a file
+How to read the full content of a file
+How to read a file line by line
+How to move the cursor in a file
+How to make sure a file is closed after using it
+What is and how to use the with statement
+What is JSON
+What is serialization
+What is deserialization
+How to convert a Python data structure to a JSON string
+How to convert a JSON string to a Python data structure
 
-## Contributing
-
--- Yesid Gutierrez - Holberton Student                                          
-
-## Versioning
-for my learning in Holberton School
-
-## Authors
-
----Yesid Gutierrez  944@holbertonshcool.com                                    
+                           
                                                                                
 ## Files
 
