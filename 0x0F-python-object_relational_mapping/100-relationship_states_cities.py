@@ -1,37 +1,27 @@
 #!/usr/bin/python3
-"""
-Script that creates the `State` “California” with the
-`City` “San Francisco” from the database `hbtn_0e_100_usa`.
-
-Arguments:
-    mysql username (str)
-    mysql password (str)
-    database name (str)
-"""
-
+'''Adds a State object and one of its City object children to a database.
+'''
 import sys
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import Session
-from sqlalchemy.engine.url import URL
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, relationship
+
 from relationship_state import Base, State
 from relationship_city import City
 
 
-if __name__ == "__main__":
-    mySQL_u = sys.argv[1]
-    mySQL_p = sys.argv[2]
-    db_name = sys.argv[3]
-
-    url = {'drivername': 'mysql+mysqldb', 'host': 'localhost',
-           'username': mySQL_u, 'password': mySQL_p, 'database': db_name}
-
-    engine = create_engine(URL(**url), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-
-    session = Session(bind=engine)
-
-    newState = State(name="California")
-    newState.cities.append(City(name="San Francisco"))
-
-    session.add(newState)
-    session.commit()
+if __name__ == '__main__':
+    if len(sys.argv) >= 4:
+        user = sys.argv[1]
+        pword = sys.argv[2]
+        db_name = sys.argv[3]
+        DATABASE_URL = 'mysql://{}:{}@localhost:3306/{}'.format(
+            user, pword, db_name
+        )
+        engine = create_engine(DATABASE_URL)
+        Base.metadata.create_all(engine)
+        session = sessionmaker(bind=engine)()
+        new_state = State(name='California')
+        new_city = City(name='San Francisco')
+        new_state.cities.append(new_city)
+        session.add(new_state)
+        session.commit()

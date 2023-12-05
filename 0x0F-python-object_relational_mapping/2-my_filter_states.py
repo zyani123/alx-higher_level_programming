@@ -1,32 +1,27 @@
 #!/usr/bin/python3
-"""
-Script that lists all values in the `states` table of `hbtn_0e_0_usa`
-where `name` matches the argument `state name searched`.
-
-Arguments:
-    mysql username (str)
-    mysql password (str)
-    database name (str)
-    state name searched (str)
-"""
-
+'''Prints all rows in the states table of a database
+with a name that matches the given argument.
+'''
 import sys
 import MySQLdb
 
-if __name__ == "__main__":
-    mySQL_u = sys.argv[1]
-    mySQL_p = sys.argv[2]
-    db_name = sys.argv[3]
 
-    searched_name = sys.argv[4]
-
-    # By default, it will connect to localhost:3306
-    db = MySQLdb.connect(user=mySQL_u, passwd=mySQL_p, db=db_name)
-    cur = db.cursor()
-
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id"
-                .format(searched_name))
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
+if __name__ == '__main__':
+    if len(sys.argv) >= 5:
+        db_connection = MySQLdb.connect(
+            host='localhost',
+            port=3306,
+            user=sys.argv[1],
+            passwd=sys.argv[2],
+            db=sys.argv[3]
+        )
+        cursor = db_connection.cursor()
+        state_name = sys.argv[4]
+        cursor.execute(
+            'SELECT * FROM states WHERE CAST(name AS BINARY) LIKE ' +
+            'CAST("{}" AS BINARY) ORDER BY id ASC;'.format(state_name)
+        )
+        results = cursor.fetchall()
+        for result in results:
+            print(result)
+        db_connection.close()
